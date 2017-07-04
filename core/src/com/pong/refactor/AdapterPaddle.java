@@ -15,11 +15,11 @@ public class AdapterPaddle {
         }else{
             if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)){
                 if(paddle.y + 100 <= Gdx.graphics.getHeight()) {
-                    paddle.y += 20;
+                    paddle.y += 10;
                 }}
             if(Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)){
                 if(paddle.y >= 0) {
-                    paddle.y -= 20;
+                    paddle.y -= 10;
                 }}}}
 
     public int paddle_height(){

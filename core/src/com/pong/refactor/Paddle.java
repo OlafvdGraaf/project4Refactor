@@ -7,5 +7,4 @@ package com.pong.refactor;
 public abstract class Paddle implements IPongComponent{
     public abstract void Control();
 
-
 }

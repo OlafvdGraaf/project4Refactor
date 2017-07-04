@@ -10,6 +10,8 @@ public class PongComponentList implements IPongComponent {
 
     private ArrayList<IPongComponent> componentList;
 
+    private BallList ballList;
+
     public PongComponentList(){
 
         componentList = new ArrayList<IPongComponent>();
@@ -20,31 +22,36 @@ public class PongComponentList implements IPongComponent {
         componentList.add(newComponent);
     }
 
-    public void accept(){
-        for (IPongComponent component: componentList) {
+    public void Add(BallList ballList){
 
-            component.accept();
-        }
+        this.ballList = ballList;
     }
 
-    public BallList accept(BallList ballList){
+    public void accept(){
+
+        for (IPongComponent component: componentList) { component.accept(); }
+
+        if(this.ballList != null){ this.ItBallIt(); }
+    }
+
+    private void ItBallIt(){
 
         while(ballList.getNext()){
+
             ballList.getCurrent().accept();
 
             if(ballList.getCurrent().hit == 5){
+
                 ballList.add(new Ball());
                 ballList.getCurrent().hit = 0;
             }
 
             if(PongComponentVisitor.hasHit){
 
-                BallList newBallList = new BallList();
-                newBallList.add(new Ball());
-                newBallList.reset();
-                return newBallList;
+                ballList = new BallList();
+                PongComponentVisitor.closestBall = null;
+                break;
             }
         }
-        return ballList;
     }
 }

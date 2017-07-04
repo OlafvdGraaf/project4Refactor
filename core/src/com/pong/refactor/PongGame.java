@@ -10,26 +10,19 @@ public class PongGame implements IGameState{
 
     PongComponentList pongList;
 
-    BallList ballList;
-
-    UserPaddle userPaddle;
-
     public PongGame(){
 
-        ballList = new BallList();
-        ballList.add(new Ball());
-
-        userPaddle = new UserPaddle();
-        PongComponentVisitor.uPaddle = userPaddle;
-
         pongList = new PongComponentList();
-        pongList.Add(userPaddle);
+        pongList.Add(new UserPaddle());
+        pongList.Add(new BallList());
+        pongList.Add(new BotPaddle());
+
+        PongComponentVisitor.Reset();
     }
 
     public IGameState Run(){
 
         pongList.accept();
-        ballList = pongList.accept(ballList);
 
         return this;
     }

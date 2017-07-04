@@ -14,6 +14,8 @@ public class BallList implements Iterator{
         current = -1;
         amount = 0;
         reset();
+
+        this.add(new Ball());
     }
 
     public boolean getNext()

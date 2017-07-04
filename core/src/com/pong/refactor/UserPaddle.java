@@ -17,6 +17,8 @@ public class UserPaddle extends Paddle {
         y = Gdx.graphics.getHeight() * 0.5f;
 
         adapterPaddle = new AdapterPaddle();
+
+        PongComponentVisitor.uPaddle = this;
     }
 
     @Override

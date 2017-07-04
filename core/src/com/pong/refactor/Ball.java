@@ -13,11 +13,15 @@ public class Ball implements IPongComponent {
     float y;
 
     float xV;
-    float yV;
+    private float yV;
 
     int hit;
 
-    Random randGen = new Random();
+    private Random randGen = new Random();
+
+    private float relativeIntersectY;
+    private float normalizedRelativeIntersectionY;
+    private double bounceAngle;
 
     public Ball(){
         x = Gdx.graphics.getWidth() * 0.5f;
@@ -36,43 +40,60 @@ public class Ball implements IPongComponent {
         PongComponentVisitor.visit(this);
     }
 
-    public boolean checkUPaddleHit(){
+    private void checkPaddleHit(){
         //checks if the ball hit the user paddle
-        if(this.x + 20 >= PongComponentVisitor.uPaddle.x &&
-                this.x - 10 <= PongComponentVisitor.uPaddle.x + 10 &&
-                this.y + 10 >= PongComponentVisitor.uPaddle.y &&
-                this.y - 10 <= PongComponentVisitor.uPaddle.y + 100){
+        if(this.x + 20      >= PongComponentVisitor.uPaddle.x      &&
+                this.x      <= PongComponentVisitor.uPaddle.x + 10 &&
+                this.y + 10 >= PongComponentVisitor.uPaddle.y      &&
+                this.y      <= PongComponentVisitor.uPaddle.y + PongComponentVisitor.uPaddle.adapterPaddle.paddle_height()){
+
+            relativeIntersectY = (PongComponentVisitor.uPaddle.y + ( 50.0f )) - this.y;
+            normalizedRelativeIntersectionY = (relativeIntersectY / ( 50/2 )) * 0.1f;
+            bounceAngle = normalizedRelativeIntersectionY * 3f;
+
+            this.calcVeloc();
+
+            PongComponentVisitor.HitRight++;
+
+            this.hit++;
+            this.xV = this.xV - this.xV - this.xV;
+        }
+
+        //checks if the ball hit the bot paddle
+        if(this.x + 20      >= PongComponentVisitor.bPaddle.x      &&
+                this.x      <= PongComponentVisitor.bPaddle.x + 10 &&
+                this.y + 10 >= PongComponentVisitor.bPaddle.y      &&
+                this.y      <= PongComponentVisitor.bPaddle.y + PongComponentVisitor.uPaddle.adapterPaddle.paddle_height()){
+
+            relativeIntersectY = (PongComponentVisitor.bPaddle.y + ( 50.0f )) - this.y;
+            normalizedRelativeIntersectionY = (relativeIntersectY / ( 50/2 )) * 0.1f;
+            bounceAngle = normalizedRelativeIntersectionY * 3f;
 
             this.calcVeloc();
 
             this.hit++;
-            this.xV = this.xV - this.xV - this.xV;
-
-            return true;
+            this.xV = Math.abs(this.xV);
         }
-        return false;
     }
 
     private void calcVeloc(){
-        float relativeIntersectY = (PongComponentVisitor.uPaddle.y + ( 50.0f )) - this.y;
-        float normalizedRelativeIntersectionY = (relativeIntersectY / ( 50/2 ));
-        double bounceAngle = normalizedRelativeIntersectionY * (5 * Math.PI/12);
         this.xV = (float)(5 * Math.cos(bounceAngle));
         this.yV = (float)(5 * -Math.sin(bounceAngle));
-
-
     }
 
     public void UpdateVeloc(){
         PongComponentVisitor.hasHit = false;
 
-        if(this.x + 20 >= Gdx.graphics.getWidth()){PongComponentVisitor.hasHit = true;}
-        if(this.x <= 0){this.xV = Math.abs(this.xV);}
+        if( PongComponentVisitor.closestBall == null ) { PongComponentVisitor.closestBall = this; }
+        else{ if(this.x < PongComponentVisitor.closestBall.x ) { PongComponentVisitor.closestBall = this; }}
+
+        if(this.x + 20 >= Gdx.graphics.getWidth())  { PongComponentVisitor.hasHit = true; PongComponentVisitor.playerTwoLives.livesCount--;}
+        if(this.x <= 0)                             { PongComponentVisitor.hasHit = true; PongComponentVisitor.playerOneLives.livesCount--;}
 
         if(this.y + 20 >= Gdx.graphics.getHeight()){this.yV = this.yV - this.yV - this.yV;}
         if(this.y <= 0){this.yV = Math.abs(this.yV);}
 
-        this.checkUPaddleHit();
+        this.checkPaddleHit();
 
         this.x += this.xV;
         this.y += this.yV;
