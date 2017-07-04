@@ -29,8 +29,8 @@ public class Ball implements IPongComponent {
 
         hit = 0;
 
-        xV = 5;
-        yV = 5;
+        xV = 4;
+        yV = 4;
     }
 
     public void accept(){
