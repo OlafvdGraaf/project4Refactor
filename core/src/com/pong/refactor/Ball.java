@@ -19,8 +19,6 @@ public class Ball implements IPongComponent {
 
     Random randGen = new Random();
 
-    IBallState state;
-
     public Ball(){
         x = Gdx.graphics.getWidth() * 0.5f;
         y = Gdx.graphics.getHeight() * (randGen.nextInt(9) * 0.1f);
@@ -29,18 +27,16 @@ public class Ball implements IPongComponent {
 
         xV = 5;
         yV = 5;
-
-        state = new RightUpState();
     }
 
     public void accept(){
 
-        this.state = state.Update(this);
+        this.UpdateVeloc();
 
         PongComponentVisitor.visit(this);
     }
 
-    public boolean checkPaddleHit(){
+    public boolean checkUPaddleHit(){
         //checks if the ball hit the user paddle
         if(this.x + 20 >= PongComponentVisitor.uPaddle.x &&
                 this.x - 10 <= PongComponentVisitor.uPaddle.x + 10 &&
@@ -48,6 +44,9 @@ public class Ball implements IPongComponent {
                 this.y - 10 <= PongComponentVisitor.uPaddle.y + 100){
 
             this.calcVeloc();
+
+            this.hit++;
+            this.xV = this.xV - this.xV - this.xV;
 
             return true;
         }
@@ -65,8 +64,15 @@ public class Ball implements IPongComponent {
     }
 
     public void UpdateVeloc(){
+        PongComponentVisitor.hasHit = false;
+
+        if(this.x + 20 >= Gdx.graphics.getWidth()){PongComponentVisitor.hasHit = true;}
+        if(this.x <= 0){this.xV = Math.abs(this.xV);}
+
         if(this.y + 20 >= Gdx.graphics.getHeight()){this.yV = this.yV - this.yV - this.yV;}
         if(this.y <= 0){this.yV = Math.abs(this.yV);}
+
+        this.checkUPaddleHit();
 
         this.x += this.xV;
         this.y += this.yV;
