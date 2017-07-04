@@ -24,6 +24,7 @@ public class PongGame implements IGameState{
 
         pongList.accept();
 
+        if(PongComponentVisitor.playerTwoLives.livesCount == 0){return new GameOver();}
         return this;
     }
 }

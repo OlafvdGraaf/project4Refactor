@@ -63,7 +63,7 @@ public final class PongComponentVisitor{
     public static void visit(Lives lives){
         font.setColor(Color.WHITE);
         font.getData().setScale(3);
-        
+
         batch.begin();
         font.draw(batch, lives.text + " : " + lives.livesCount, lives.x + lives.width * 0.18F, lives.y + lives.height * 0.72F);
         batch.end();
@@ -83,6 +83,11 @@ public final class PongComponentVisitor{
         HitRight = 0;
 
         scoreCounter = new ScoreCounter();
+
+        playerOneLives = new Lives(0.0F, (float)(Gdx.graphics.getHeight() - 100), "Player 1");
+
+        playerTwoLives = new Lives((float)(Gdx.graphics.getWidth() - 300), (float)(Gdx.graphics.getHeight() - 100), "Player 2");
+
     }
 
 }
