@@ -1,5 +1,7 @@
 package com.pong.refactor;
 
+import com.badlogic.gdx.graphics.Color;
+
 /**
  * Created by felixdejonge on 04/07/2017.
  */
@@ -38,9 +40,9 @@ public class Optionscreen implements IGameState {
 
         backGround.Run();
 
-        if (volBTN0.isPressed){HomeScreen.Volume = 0f;}
-        if (volBTN1.isPressed){HomeScreen.Volume = 50f;}
-        if (volBTN2.isPressed){HomeScreen.Volume = 100f;}
+        if (volBTN0.isPressed){volBTN0.color = Color.RED; volBTN1.color = Color.WHITE; volBTN2.color = Color.WHITE; HomeScreen.backgroundmusic.setVolume(0.0f);}
+        if (volBTN1.isPressed){volBTN1.color = Color.RED; volBTN2.color = Color.WHITE; volBTN0.color = Color.WHITE; HomeScreen.backgroundmusic.setVolume(0.3f);}
+        if (volBTN2.isPressed){volBTN2.color = Color.RED; volBTN0.color = Color.WHITE; volBTN1.color = Color.WHITE; HomeScreen.Volume = 0.6f;}
         if (difBTN1.isPressed){PongComponentVisitor.bPaddle.veloc = 8;}
         if (difBTN2.isPressed){PongComponentVisitor.bPaddle.veloc = 12;}
 

@@ -3,6 +3,8 @@ package com.pong.refactor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
+import java.awt.Color;
+
 /**
  * Created by Dymos on 03/07/2017.
  */
@@ -17,6 +19,8 @@ public class Button implements IPongComponent {
     float height;
 
     String text;
+
+    com.badlogic.gdx.graphics.Color color = com.badlogic.gdx.graphics.Color.WHITE;
 
     public Button(float size, float yPos, float xPos, String text){
 

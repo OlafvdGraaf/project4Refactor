@@ -35,7 +35,9 @@ public final class PongComponentVisitor{
     public static void visit(Button btn){
         btnFont.setColor(Color.BLACK);
         btnFont.getData().setScale(1.5f);
+        shapeRend.setColor(btn.color);
         Draw(btn.x, btn.y, btn.width, btn.height);
+        shapeRend.setColor(Color.WHITE);
         batch.begin();
         btnFont.draw(batch, btn.text, (btn.x+btn.width*0.10f), (btn.y+btn.height*0.65f));
         batch.end();
