@@ -27,15 +27,17 @@ public final class PongComponentVisitor{
     static Lives playerOneLives = new Lives(0.0F, (float)(Gdx.graphics.getHeight() - 100), "Player 1");
     static Lives playerTwoLives = new Lives((float)(Gdx.graphics.getWidth() - 300), (float)(Gdx.graphics.getHeight() - 100), "Player 2");
 
-
-    static BitmapFont font = new BitmapFont();
+    static BitmapFont endFont = new BitmapFont();
+    static BitmapFont uiFont = new BitmapFont();
+    static BitmapFont btnFont = new BitmapFont();
     static SpriteBatch batch = new SpriteBatch();
 
     public static void visit(Button btn){
-        font.setColor(Color.BLACK);
+        btnFont.setColor(Color.BLACK);
+        btnFont.getData().setScale(1.5f);
         Draw(btn.x, btn.y, btn.width, btn.height);
         batch.begin();
-        font.draw(batch, btn.text, (btn.x+btn.width*0.25f), (btn.y+btn.height*0.5f));
+        btnFont.draw(batch, btn.text, (btn.x+btn.width*0.10f), (btn.y+btn.height*0.65f));
         batch.end();
     }
 
@@ -56,20 +58,20 @@ public final class PongComponentVisitor{
     }
 
     public static void visit(ScoreCounter scoreCounter){
-        font.setColor(Color.WHITE);
-        font.getData().setScale(3);
+        uiFont.setColor(Color.WHITE);
+        uiFont.getData().setScale(3);
 
         batch.begin();
-        font.draw(batch, scoreCounter.text + String.valueOf(scoreCounter.counter), scoreCounter.x + scoreCounter.width * 0.18F, scoreCounter.y + scoreCounter.height * 0.72F);
+        uiFont.draw(batch, scoreCounter.text + String.valueOf(scoreCounter.counter), scoreCounter.x + scoreCounter.width * 0.18F, scoreCounter.y + scoreCounter.height * 0.72F);
         batch.end();
     }
 
     public static void visit(Lives lives){
-        font.setColor(Color.WHITE);
-        font.getData().setScale(3);
+        uiFont.setColor(Color.WHITE);
+        uiFont.getData().setScale(3);
 
         batch.begin();
-        font.draw(batch, lives.text + " : " + lives.livesCount, lives.x + lives.width * 0.18F, lives.y + lives.height * 0.72F);
+        uiFont.draw(batch, lives.text + " : " + lives.livesCount, lives.x + lives.width * 0.18F, lives.y + lives.height * 0.72F);
         batch.end();
     }
 

@@ -1,5 +1,7 @@
 package com.pong.refactor;
 
+import java.awt.Color;
+
 /**
  * Created by Dymos on 03/07/2017.
  */
