@@ -28,7 +28,7 @@ public class Connector {
     public void Save_score(String Name, Integer Score){
         Items.put("name", Name);
         Items.put("score", String.format("%s", Score));
-        this.Httprequest = this.Requestbuilder.newRequest().method(Net.HttpMethods.POST).url("http://nekonekochan.org/pong_request.php").content(HttpParametersUtils.convertHttpParameters(Items)).build();
+        this.Httprequest = this.Requestbuilder.newRequest().method(Net.HttpMethods.POST).url("http://nekonekochan.org/pong_save.php").content(HttpParametersUtils.convertHttpParameters(Items)).build();
         this.Httprequest.setHeader("Content-Type", "application/x-www-form-urlencoded");
         this.Httprequest.setTimeOut(6000);
         this.Httprequest.reset();
