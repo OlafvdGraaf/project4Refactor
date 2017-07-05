@@ -1,5 +1,6 @@
 package com.pong.refactor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -24,8 +25,8 @@ public class PongGame implements IGameState{
 
         pongList.accept();
 
-        if(PongComponentVisitor.playerTwoLives.livesCount == 0){return new GameOver("You Won!", true);}
-        if(PongComponentVisitor.playerTwoLives.livesCount == 0){return new GameOver("You Lost!", false);}
+        if(PongComponentVisitor.playerOneLives.livesCount == 0){return new GameOver("You Won!", true, Color.RED);}
+        if(PongComponentVisitor.playerTwoLives.livesCount == 0){return new GameOver("You Lost!", false, Color.GREEN);}
 
         return this;
     }

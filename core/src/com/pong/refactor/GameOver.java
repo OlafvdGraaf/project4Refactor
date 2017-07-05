@@ -1,5 +1,6 @@
 package com.pong.refactor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,17 +17,27 @@ public class GameOver implements IGameState {
     //all the elemtents you want in the Homescreen
     Button btn;
 
-    public GameOver(String Text, boolean gameWon){
+    String text;
+    Color color;
 
+    public GameOver(String Text, boolean gameWon, Color color){
+        this.text = Text;
+        this.color = color;
         btn = new Button(5, 5, 0, "Main Menu");
 
         //adding the elements tot the component list
         pongList = new PongComponentList();
-        pongList.Add(btn = new Button(100, 4, 0, "Main Menu"));
+        pongList.Add(btn = new Button(200, 5, 0, "Main Menu"));
     }
 
     public IGameState Run(){
         pongList.accept();
+
+        PongComponentVisitor.endFont.setColor(this.color);
+        PongComponentVisitor.endFont.getData().setScale(4);
+        PongComponentVisitor.batch.begin();
+        PongComponentVisitor.endFont.draw(PongComponentVisitor.batch, this.text, (Gdx.graphics.getWidth() * 0.5f) - 125, Gdx.graphics.getHeight() * 0.8f);
+        PongComponentVisitor.batch.end();
 
         //to check if the button is pressed
         if(btn.isPressed){return new Homescreen();}
