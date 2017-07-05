@@ -22,14 +22,13 @@ public class Optionscreen implements IGameState {
     public Optionscreen(){
 
         pongList = new PongComponentList();
-        pongList.Add(bckBTN = new Button(100, 1, 0));
-        pongList.Add(volBTN0 = new Button(100, 2, -120));
-        pongList.Add(volBTN1 = new Button(100, 2, 0));
-        pongList.Add(volBTN2 = new Button(100, 2, 120));
-        pongList.Add(difBTN1 = new Button(100, 3, -120));
-        pongList.Add(difBTN2 = new Button(100, 3, 0));
+        pongList.Add(bckBTN = new Button(100, 1, 0, "Main Menu"));
+        pongList.Add(volBTN0 = new Button(100, 2, -120, "Volume 0"));
+        pongList.Add(volBTN1 = new Button(100, 2, 0, "Volume 1"));
+        pongList.Add(volBTN2 = new Button(100, 2, 120, "Volume 2"));
+        pongList.Add(difBTN1 = new Button(100, 3, -120, "Easy"));
+        pongList.Add(difBTN2 = new Button(100, 3, 0, "Hard"));
         HomeScreen = new Homescreen();
-
         backGround = new AnimatedBackground();
     }
 

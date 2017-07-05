@@ -27,8 +27,8 @@ public class Homescreen implements IGameState {
     public Homescreen(){
 
         pongList = new PongComponentList();
-        pongList.Add(strtBTN = new Button(100, 4, 0));
-        pongList.Add(optBTN = new Button(100, 3, 0));
+        pongList.Add(strtBTN = new Button(100, 4, 0, "Play"));
+        pongList.Add(optBTN = new Button(100, 3, 0, "Options"));
 
         Volume = 100f;
 
