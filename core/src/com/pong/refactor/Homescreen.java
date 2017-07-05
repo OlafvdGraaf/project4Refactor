@@ -20,6 +20,8 @@ public class Homescreen implements IGameState {
     Button strtBTN;
     Button optBTN;
 
+    float Volume;
+
     AnimatedBackground backGround;
 
     public Homescreen(){
@@ -28,7 +30,11 @@ public class Homescreen implements IGameState {
         pongList.Add(strtBTN = new Button(100, 4, 0));
         pongList.Add(optBTN = new Button(100, 3, 0));
 
+        Volume = 100f;
+
         backGround = new AnimatedBackground();
+
+        PongComponentVisitor.bPaddle = new BotPaddle();
     }
 
     public IGameState Run(){
