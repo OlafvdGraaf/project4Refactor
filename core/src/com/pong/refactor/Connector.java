@@ -1,72 +1,53 @@
 package com.pong.refactor;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net;
-import com.badlogic.gdx.maps.Map;
-import com.badlogic.gdx.maps.tiled.BaseTmxMapLoader;
-import com.badlogic.gdx.net.HttpParametersUtils;
 import com.badlogic.gdx.net.HttpRequestBuilder;
-
-import java.security.Policy;
-import java.util.HashMap;
 
 /**
  * Created by mischavandalen on 05/07/2017.
  */
 
 public class Connector {
-    private java.util.Map<String, String> Items;
-
-    private HttpRequestBuilder Requestbuilder;
-    private Net.HttpRequest Httprequest;
+    private String Item;
+    private Net.HttpRequest httpRequest;
+    private Net.HttpResponseListener HttpResponseListener;
     static String item;
 
     public Connector(){
-        this.Requestbuilder = new HttpRequestBuilder();
-        Items = new HashMap<String, String>();
+
     }
-    public String Save_score(String Name, Integer Score){
-        Items.put("name", Name);
-        Items.put("score", String.format("%s", Score));
-        this.Httprequest = this.Requestbuilder.newRequest().method(Net.HttpMethods.POST).url("http://nekonekochan.org/pong_save.php").content(HttpParametersUtils.convertHttpParameters(Items)).build();
-        this.Httprequest.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        this.Httprequest.setTimeOut(6000);
-        Gdx.net.sendHttpRequest(this.Httprequest, new Net.HttpResponseListener() {
+    public String Get_Score(){
+//        java.util.Map<String, String> parameters = new HashMap<String, String>();
+//        parameters.put("username", username);
+//        parameters.put("password", password);
+
+        HttpRequestBuilder requestBuilder = new HttpRequestBuilder();
+        httpRequest = requestBuilder.newRequest().method(Net.HttpMethods.POST).url("http://nekonekochan.org/pong_request.php").build();
+        httpRequest.setHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        httpRequest.setTimeOut(6000);
+
+        Gdx.net.sendHttpRequest(httpRequest, new HttpResponseListener() {
             @Override
             public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 item = httpResponse.getResultAsString();
             }
+
             @Override
             public void failed(Throwable t) {
-                item = "failed to retrieve data";
+                item = "failed";
             }
+
             @Override
             public void cancelled() {
-                item = "cancelled conntection";
+                item = "canceled";
             }
         });
-        this.Httprequest.reset();
-        return item;
+
+        httpRequest.reset();
+        return Item;
     }
-    public String Get_score() {
-        this.Httprequest = this.Requestbuilder.newRequest().method(Net.HttpMethods.POST).url("http://nekonekochan.org/pong_request.php").build();
-        this.Httprequest.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        this.Httprequest.setTimeOut(6000);
-        Gdx.net.sendHttpRequest(this.Httprequest, new Net.HttpResponseListener() {
-            @Override
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
-                item = httpResponse.getResultAsString();
-            }
-            @Override
-            public void failed(Throwable t) {
-                    item = "failed to retrieve data";
-                }
-            @Override
-            public void cancelled() {
-                    item = "cancelled conntection";
-                }
-        });
-        this.Httprequest.reset();
-        return item;
-    }
+
 }
