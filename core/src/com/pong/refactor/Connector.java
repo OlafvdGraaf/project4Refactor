@@ -46,7 +46,7 @@ public class Connector {
 
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             @Override
-            public void handleHttpResponse(Net.HttpResponse httpResponse) {
+                public void handleHttpResponse(Net.HttpResponse httpResponse) {
                 item = httpResponse.getResultAsString();
             }
             @Override

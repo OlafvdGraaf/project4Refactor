@@ -1,6 +1,7 @@
 package com.pong.refactor;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -14,7 +15,7 @@ import sun.font.TrueTypeFont;
  */
 
 public class Homescreen implements IGameState {
-
+    private Music backgroundmusic;
     PongComponentList pongList;
 
     Button strtBTN;
@@ -25,15 +26,17 @@ public class Homescreen implements IGameState {
     AnimatedBackground backGround;
 
     public Homescreen(){
+        backgroundmusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/background_music.wav"));
 
         pongList = new PongComponentList();
         pongList.Add(strtBTN = new Button(100, 4, 0, "Play"));
         pongList.Add(optBTN = new Button(100, 3, 0, "Options"));
 
         Volume = 100f;
-
+        backgroundmusic.setVolume(Volume);
+        backgroundmusic.isLooping();
+        backgroundmusic.play();
         backGround = new AnimatedBackground();
-
         PongComponentVisitor.bPaddle = new BotPaddle();
     }
 
@@ -43,7 +46,7 @@ public class Homescreen implements IGameState {
 
         backGround.Run();
 
-        if(strtBTN.isPressed){return new PongGame();}
+        if(strtBTN.isPressed){backgroundmusic.pause(); return new PongGame();}
         if (optBTN.isPressed) {return new Optionscreen();}
         else{return this;}
     }
