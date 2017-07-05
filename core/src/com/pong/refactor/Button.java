@@ -28,7 +28,7 @@ public class Button implements IPongComponent {
         this.height = size * 0.5f;
 
         this.x = xPos + (Gdx.graphics.getWidth() * 0.5f) - (this.width *0.5f);
-        this.y = Gdx.graphics.getHeight() * (yPos * 0.10f);
+        this.y = Gdx.graphics.getHeight() * (yPos * 0.12f);
 
         this.text = text;
 

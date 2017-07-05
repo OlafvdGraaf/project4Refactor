@@ -29,8 +29,8 @@ public class Homescreen implements IGameState {
         backgroundmusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/background_music.wav"));
 
         pongList = new PongComponentList();
-        pongList.Add(strtBTN = new Button(100, 4, 0, "Play"));
-        pongList.Add(optBTN = new Button(100, 3, 0, "Options"));
+        pongList.Add(strtBTN = new Button(200, 2, 0, "Play"));
+        pongList.Add(optBTN = new Button(200, 1, 0, "Options"));
 
         backGround = new AnimatedBackground();
         PongComponentVisitor.bPaddle = new BotPaddle();
