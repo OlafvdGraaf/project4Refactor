@@ -10,7 +10,6 @@ public class Game {
 
     private IGameState currentState;
     Homescreen HomeScreen;
-    PongGame Pong_Game;
 
     public Game(){
         HomeScreen = new Homescreen();

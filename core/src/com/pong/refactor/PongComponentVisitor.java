@@ -24,8 +24,8 @@ public final class PongComponentVisitor{
     static int HitRight = 0;
 
     static ScoreCounter scoreCounter = new ScoreCounter();
-    static Lives playerOneLives = new Lives(0.0F, (float)(Gdx.graphics.getHeight() - 100), "Player 1");
-    static Lives playerTwoLives = new Lives((float)(Gdx.graphics.getWidth() - 300), (float)(Gdx.graphics.getHeight() - 100), "Player 2");
+    static Lives playerOneLives = new Lives(0.0F, (float)(Gdx.graphics.getHeight() - 100), "BOT");
+    static Lives playerTwoLives = new Lives((float)(Gdx.graphics.getWidth() - 300), (float)(Gdx.graphics.getHeight() - 100), "PLAYER");
 
     static BitmapFont endFont = new BitmapFont();
     static BitmapFont uiFont = new BitmapFont();
@@ -92,9 +92,9 @@ public final class PongComponentVisitor{
 
         scoreCounter = new ScoreCounter();
 
-        playerOneLives = new Lives(0.0F, (float)(Gdx.graphics.getHeight() - 100), "Player 1");
+        playerOneLives = new Lives(0.0F, (float)(Gdx.graphics.getHeight() - 100), "BOT");
 
-        playerTwoLives = new Lives((float)(Gdx.graphics.getWidth() - 300), (float)(Gdx.graphics.getHeight() - 100), "Player 2");
+        playerTwoLives = new Lives((float)(Gdx.graphics.getWidth() - 300), (float)(Gdx.graphics.getHeight() - 100), "PLAYER");
 
     }
 

@@ -69,7 +69,7 @@ public class Ball implements IPongComponent {
                 this.x      <= PongComponentVisitor.bPaddle.x + 10 &&
                 this.y + 10 >= PongComponentVisitor.bPaddle.y      &&
                 this.y      <= PongComponentVisitor.bPaddle.y + PongComponentVisitor.uPaddle.adapterPaddle.paddle_height()){
-            hit_2.play(1.0f);
+            hit_1.play(1.0f);
             relativeIntersectY = (PongComponentVisitor.bPaddle.y + ( 50.0f )) - this.y;
             normalizedRelativeIntersectionY = (relativeIntersectY / ( 50/2 )) * 0.1f;
             bounceAngle = normalizedRelativeIntersectionY * 3f;
@@ -95,8 +95,8 @@ public class Ball implements IPongComponent {
         if(this.x + 20 >= Gdx.graphics.getWidth())  { loss.play(10.f); PongComponentVisitor.hasHit = true; PongComponentVisitor.playerTwoLives.livesCount--;}
         if(this.x <= 0)                             { loss.play(10.f); PongComponentVisitor.hasHit = true; PongComponentVisitor.playerOneLives.livesCount--;}
 
-        if(this.y + 20 >= Gdx.graphics.getHeight()){this.yV = this.yV - this.yV - this.yV;}
-        if(this.y <= 0){this.yV = Math.abs(this.yV);}
+        if(this.y + 20 >= Gdx.graphics.getHeight()){hit_2.play(); this.yV = this.yV - this.yV - this.yV;}
+        if(this.y <= 0){hit_2.play(); this.yV = Math.abs(this.yV);}
 
         this.checkPaddleHit();
 
