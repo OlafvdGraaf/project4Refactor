@@ -7,12 +7,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class PONG_refactor extends ApplicationAdapter {
+	private Connector connector;
 
 	Game pong_game;
 
 	@Override
 	public void create () {
-
+		connector = new Connector();
+		connector.Save_score("AAA", 300);
 		pong_game = new Game();
 
 	}
