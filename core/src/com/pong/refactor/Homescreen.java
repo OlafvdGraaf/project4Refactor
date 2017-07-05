@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.PolygonRegion;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import sun.font.TrueTypeFont;
@@ -17,13 +18,15 @@ public class Homescreen implements IGameState {
     PongComponentList pongList;
 
     Button strtBTN;
+    Button optBTN;
 
     AnimatedBackground backGround;
 
     public Homescreen(){
 
         pongList = new PongComponentList();
-        pongList.Add(strtBTN = new Button(100, 2));
+        pongList.Add(strtBTN = new Button(100, 4, 0));
+        pongList.Add(optBTN = new Button(100, 3, 0));
 
         backGround = new AnimatedBackground();
     }
@@ -35,6 +38,7 @@ public class Homescreen implements IGameState {
         backGround.Run();
 
         if(strtBTN.isPressed){return new PongGame();}
+        if (optBTN.isPressed) {return new Optionscreen();}
         else{return this;}
     }
 }

@@ -16,12 +16,12 @@ public class Button implements IPongComponent {
     float width;
     float height;
 
-    public Button(float size, float yPos){
+    public Button(float size, float yPos, float xPos){
 
         this.width = size;
         this.height = size * 0.5f;
 
-        this.x = (Gdx.graphics.getWidth() * 0.5f) - (this.width *0.5f);
+        this.x = xPos + (Gdx.graphics.getWidth() * 0.5f) - (this.width *0.5f);
         this.y = Gdx.graphics.getHeight() * (yPos * 0.10f);
 
         isPressed = false;
