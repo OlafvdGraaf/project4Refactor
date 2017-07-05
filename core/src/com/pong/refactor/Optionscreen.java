@@ -40,11 +40,11 @@ public class Optionscreen implements IGameState {
 
         backGround.Run();
 
-        if (volBTN0.isPressed){volBTN0.color = Color.RED; volBTN1.color = Color.WHITE; volBTN2.color = Color.WHITE; HomeScreen.backgroundmusic.setVolume(0.0f);}
-        if (volBTN1.isPressed){volBTN1.color = Color.RED; volBTN2.color = Color.WHITE; volBTN0.color = Color.WHITE; HomeScreen.backgroundmusic.setVolume(0.3f);}
-        if (volBTN2.isPressed){volBTN2.color = Color.RED; volBTN0.color = Color.WHITE; volBTN1.color = Color.WHITE; HomeScreen.Volume = 0.6f;}
-        if (difBTN1.isPressed){PongComponentVisitor.bPaddle.veloc = 8;}
-        if (difBTN2.isPressed){PongComponentVisitor.bPaddle.veloc = 12;}
+        if (volBTN0.isPressed){volBTN0.color = Color.YELLOW; volBTN1.color = Color.WHITE; volBTN2.color = Color.WHITE; HomeScreen.backgroundmusic.setVolume(0.0f);}
+        if (volBTN1.isPressed){volBTN1.color = Color.YELLOW; volBTN2.color = Color.WHITE; volBTN0.color = Color.WHITE; HomeScreen.backgroundmusic.setVolume(0.3f);}
+        if (volBTN2.isPressed){volBTN2.color = Color.YELLOW; volBTN0.color = Color.WHITE; volBTN1.color = Color.WHITE; HomeScreen.Volume = 0.6f;}
+        if (difBTN1.isPressed){difBTN1.color = Color.YELLOW; difBTN2.color = Color.WHITE; PongComponentVisitor.bPaddle.veloc = 8;}
+        if (difBTN2.isPressed){difBTN2.color = Color.YELLOW; difBTN1.color = Color.WHITE; PongComponentVisitor.bPaddle.veloc = 12;}
 
         if(bckBTN.isPressed){return HomeScreen;}
         else{return this;}

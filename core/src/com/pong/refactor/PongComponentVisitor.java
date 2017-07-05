@@ -52,7 +52,7 @@ public final class PongComponentVisitor{
     }
 
     public static void visit(BotPaddle bPaddle){
-        Draw(bPaddle.x, bPaddle.y, 10, 100);
+        Draw(bPaddle.x, bPaddle.y, 10, uPaddle.adapterPaddle.paddle_height());
     }
 
     public static void visit(UserPaddle uPaddle){
