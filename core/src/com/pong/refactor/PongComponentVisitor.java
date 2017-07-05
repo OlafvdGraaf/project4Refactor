@@ -32,7 +32,11 @@ public final class PongComponentVisitor{
     static SpriteBatch batch = new SpriteBatch();
 
     public static void visit(Button btn){
+        font.setColor(Color.BLACK);
         Draw(btn.x, btn.y, btn.width, btn.height);
+        batch.begin();
+        font.draw(batch, btn.text, (btn.x+btn.width*0.25f), (btn.y+btn.height*0.5f));
+        batch.end();
     }
 
     public static void visit(Ball ball){

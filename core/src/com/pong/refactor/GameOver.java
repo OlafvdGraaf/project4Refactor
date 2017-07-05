@@ -18,11 +18,11 @@ public class GameOver implements IGameState {
 
     public GameOver(String Text, boolean gameWon){
 
-        btn = new Button(5, 5, 0);
+        btn = new Button(5, 5, 0, "Main Menu");
 
         //adding the elements tot the component list
         pongList = new PongComponentList();
-        pongList.Add(btn = new Button(100, 4, 0));
+        pongList.Add(btn = new Button(100, 4, 0, "Main Menu"));
     }
 
     public IGameState Run(){
