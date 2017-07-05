@@ -15,7 +15,7 @@ public class PongGame implements IGameState{
         pongList = new PongComponentList();
         pongList.Add(new UserPaddle());
         pongList.Add(new BallList());
-        pongList.Add(new BotPaddle());
+        pongList.Add(PongComponentVisitor.bPaddle);
 
         PongComponentVisitor.Reset();
     }

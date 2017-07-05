@@ -14,6 +14,7 @@ public class Optionscreen implements IGameState {
     Button volBTN2;
     Button difBTN1;
     Button difBTN2;
+    Homescreen HomeScreen;
 
 
     AnimatedBackground backGround;
@@ -27,6 +28,7 @@ public class Optionscreen implements IGameState {
         pongList.Add(volBTN2 = new Button(100, 2, 120));
         pongList.Add(difBTN1 = new Button(100, 3, -120));
         pongList.Add(difBTN2 = new Button(100, 3, 0));
+        HomeScreen = new Homescreen();
 
         backGround = new AnimatedBackground();
     }
@@ -37,9 +39,13 @@ public class Optionscreen implements IGameState {
 
         backGround.Run();
 
-        if (volBTN0.isPressed){}
+        if (volBTN0.isPressed){HomeScreen.Volume = 0f;}
+        if (volBTN1.isPressed){HomeScreen.Volume = 50f;}
+        if (volBTN2.isPressed){HomeScreen.Volume = 100f;}
+        if (difBTN1.isPressed){PongComponentVisitor.bPaddle.veloc = 8;}
+        if (difBTN2.isPressed){PongComponentVisitor.bPaddle.veloc = 12;}
 
-        if(bckBTN.isPressed){return new Homescreen();}
+        if(bckBTN.isPressed){return HomeScreen;}
         else{return this;}
     }
 

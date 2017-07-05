@@ -7,10 +7,12 @@ package com.pong.refactor;
 public class Game {
 
     private IGameState currentState;
+    Homescreen HomeScreen;
+    PongGame Pong_Game;
 
     public Game(){
-
-        currentState = new Homescreen();
+        HomeScreen = new Homescreen();
+        currentState = HomeScreen;
     }
 
     public void Run(){
