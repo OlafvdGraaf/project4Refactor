@@ -32,7 +32,7 @@ public final class PongComponentVisitor{
     static SpriteBatch batch = new SpriteBatch();
 
     public static void visit(Button btn){
-        PongComponentVisitor.Draw(btn.x, btn.y, btn.width, btn.height);
+        Draw(btn.x, btn.y, btn.width, btn.height);
     }
 
     public static void visit(Ball ball){

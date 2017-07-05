@@ -16,7 +16,7 @@ public class GameOver implements IGameState {
     //all the elemtents you want in the Homescreen
     Button btn;
 
-    public GameOver(){
+    public GameOver(String Text, boolean gameWon){
 
         btn = new Button(5, 5, 0);
 
